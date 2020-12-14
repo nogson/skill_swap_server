@@ -21,12 +21,8 @@ use App\Http\Controllers\UserController;
 //});
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
+    Route::get('/user', 'App\Http\Controllers\UserController@show');
     Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
-
 });
 
 
