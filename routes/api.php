@@ -21,8 +21,11 @@ use App\Http\Controllers\UserController;
 //});
 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('/user/logout', 'App\Http\Controllers\UserController@logout');
     Route::get('/user', 'App\Http\Controllers\UserController@show');
     Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
+    Route::post('/user/imageUpload', 'App\Http\Controllers\UserController@imageUpload');
+
 });
 
 

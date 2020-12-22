@@ -15,14 +15,16 @@
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
-        "shipping-docker/vessel": "^6.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "shipping-docker/vessel": "^6.0"
     },
     "config": {
         "optimize-autoloader": true,
