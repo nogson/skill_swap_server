@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 
 class UserController extends Controller
@@ -37,17 +38,24 @@ class UserController extends Controller
 
         return DB::transaction(function () use ($request) {
             $user = User::find($request->id);
-            $image = explode(';', $request->thumbnail)[1];
-            $image = explode(',', $image)[1];
-            $decodedImage = base64_decode($image);
-            $file = 'thumbnail/' . Str::uuid()->toString() . '.png';
 
-            $path = Storage::disk('s3')->put($file,$decodedImage, 'public');
 
-            if (!$path) {
-                throw new Exception('ファイルアップロード時にエラーが発生しました。');
+            if ($request->thumbnail) {
+
+                preg_match('/data:image\/(\w+);base64,/', $request->thumbnail, $matches);
+                $extension = $matches[1];
+
+                $img = preg_replace('/^data:image.*base64,/', '', $request->thumbnail);
+                $img = str_replace(' ', '+', $img);
+                $fileData = base64_decode($img);
+                $file = 'thumbnail/' . Str::uuid()->toString() . '.' . $extension;
+                $path = Storage::disk('s3')->put($file, $fileData, 'public');
+                if (!$path) {
+                    throw new Exception('ファイルアップロード時にエラーが発生しました。');
+                }
+
+                $user->thumbnail = env('APP_IMAGE_URL') . '/' . $file;
             }
-
 
 
             $user->name = $request->name;
@@ -61,8 +69,7 @@ class UserController extends Controller
             $user->save();
 
 
-
-            return response()->success();
+            return response()->success($user);
 
         });
 
