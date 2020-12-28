@@ -48,13 +48,17 @@ class UserController extends Controller
                 $img = preg_replace('/^data:image.*base64,/', '', $request->thumbnail);
                 $img = str_replace(' ', '+', $img);
                 $fileData = base64_decode($img);
+                $fileData = Image::make($fileData)->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->fit(300, 300)->stream($extension, 100);
                 $file = 'thumbnail/' . Str::uuid()->toString() . '.' . $extension;
                 $path = Storage::disk('s3')->put($file, $fileData, 'public');
+                $user->thumbnail = env('APP_IMAGE_URL') . '/' . $file;
+
                 if (!$path) {
                     throw new Exception('ファイルアップロード時にエラーが発生しました。');
                 }
 
-                $user->thumbnail = env('APP_IMAGE_URL') . '/' . $file;
             }
 
 
