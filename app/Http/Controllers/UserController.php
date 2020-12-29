@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class UserController extends Controller
         return DB::transaction(function () use ($request) {
             $user = User::find($request->id);
 
-
+            // サムネイルを登録
             if ($request->thumbnail) {
 
                 preg_match('/data:image\/(\w+);base64,/', $request->thumbnail, $matches);
@@ -59,6 +60,15 @@ class UserController extends Controller
                     throw new Exception('ファイルアップロード時にエラーが発生しました。');
                 }
 
+            }
+
+            // カテゴリを追加
+            foreach ($request->strong as $strong) {
+                if (Category::where('name', '=', $strong)->count() == 0){
+                    Category::create([
+                        'name' => $strong
+                    ]);
+                }
             }
 
 
