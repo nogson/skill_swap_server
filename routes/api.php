@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', 'App\Http\Controllers\UserController@show');
     Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
     Route::post('/user/imageUpload', 'App\Http\Controllers\UserController@imageUpload');
+    Route::get('/categories', 'App\Http\Controllers\CategoryController@index');
+    Route::get('/category/{id}/user', 'App\Http\Controllers\CategoryController@users');
 
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CategoryMap;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,15 +63,27 @@ class UserController extends Controller
 
             }
 
-            // カテゴリを追加
             foreach ($request->strong as $strong) {
-                if (Category::where('name', '=', $strong)->count() == 0){
-                    Category::create([
+
+                $category = Category::where('name', '=', $strong)->first();
+
+                // カテゴリを追加
+                if (empty($category)) {
+                    $category = Category::create([
                         'name' => $strong
                     ]);
+
+                    // カテゴリとユーザーIDをマッピング
+                    $this->saveCategoryMap($user->id, $category->id);
+
+                } else {
+                    // カテゴリとユーザーIDをマッピング
+                    $this->saveCategoryMap($user->id, $category->id);
                 }
             }
 
+            // カテゴリマップを削除
+            $this->deleteCategoryMap($user, $request->strong);
 
             $user->name = $request->name;
             $user->profile = $request->profile;
@@ -89,8 +102,27 @@ class UserController extends Controller
 
     }
 
-    public function imageUpload(Request $request)
+    public function saveCategoryMap($user_id, $category_id)
     {
+        $category_map = CategoryMap::where('category_id', $category_id)->where('user_id', $user_id)->first();
 
+        if(empty($category_map)) {
+            // カテゴリとユーザーIDをマッピング
+            CategoryMap::create([
+                'user_id' => $user_id,
+                'category_id' => $category_id
+            ]);
+        }
+    }
+
+    public function deleteCategoryMap($user, $request_strong)
+    {
+        $user_strong = explode(',', $user->strong);
+        $diff_strong = array_diff($user_strong, $request_strong);
+
+        foreach ($diff_strong as $strong) {
+            $category = Category::where('name', $strong)->first();
+            CategoryMap::where('category_id', $category->id)->where('user_id', $user->id)->delete();
+        }
     }
 }
