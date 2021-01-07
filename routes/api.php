@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -28,6 +28,6 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 
 
-Route::post('/login', 'LoginController@login');
+Route::post('/user', 'App\Http\Controllers\AuthController@store');
 Route::get('/categories', 'App\Http\Controllers\CategoryController@index');
 Route::get('/category/{id}/user', 'App\Http\Controllers\CategoryController@users');

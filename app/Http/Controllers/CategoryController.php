@@ -20,4 +20,5 @@ class CategoryController extends Controller
         $users = User::whereIn('id',$user_ids)->get();
         return response()->success($users);
     }
+
 }
