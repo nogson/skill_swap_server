@@ -17,6 +17,14 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $param = [
+            'name' => 'IT・プログラミング',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ];
+
+        DB::table('categories')->insert($param);
+
+        $param = [
             'name' => 'デザイン',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
@@ -25,7 +33,7 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->insert($param);
 
         $param = [
-            'name' => 'javascript',
+            'name' => '動画・写真',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -33,58 +41,7 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->insert($param);
 
         $param = [
-            'name' => 'vue',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ];
-
-        DB::table('categories')->insert($param);
-
-        $param = [
-            'name' => 'php',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ];
-
-        DB::table('categories')->insert($param);
-
-        $param = [
-            'name' => 'AWS',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ];
-
-        DB::table('categories')->insert($param);
-
-
-        $param = [
-            'name' => 'Ruby',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ];
-
-        DB::table('categories')->insert($param);
-
-        $param = [
-            'name' => 'サウナ',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ];
-
-        DB::table('categories')->insert($param);
-
-
-        $param = [
-            'name' => 'Android',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ];
-
-        DB::table('categories')->insert($param);
-
-
-        $param = [
-            'name' => 'Kotorin',
+            'name' => 'Webマーケティング',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
