@@ -31,3 +31,4 @@ Route::group(['middleware' => 'auth:api'], function () {
 Route::post('/user', 'App\Http\Controllers\AuthController@store');
 Route::get('/categories', 'App\Http\Controllers\CategoryController@index');
 Route::get('/category/{id}/user', 'App\Http\Controllers\CategoryController@users');
+Route::get('/skills', 'App\Http\Controllers\SkillController@index');

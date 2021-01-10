@@ -18,7 +18,7 @@ class SkillsTableSeeder extends Seeder
     {
         $param = [
             'name' => 'IT・プログラミング スキル1',
-            'category_id' => '1',
+            'category_id' => 1,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -27,7 +27,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'IT・プログラミング スキル2',
-            'category_id' => '1',
+            'category_id' => 1,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -36,7 +36,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'IT・プログラミング スキル3',
-            'category_id' => '1',
+            'category_id' => 1,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -54,7 +54,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'デザイン スキル1',
-            'category_id' => '2',
+            'category_id' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -63,7 +63,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'デザイン スキル2',
-            'category_id' => '2',
+            'category_id' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -72,7 +72,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'デザイン スキル3',
-            'category_id' => '2',
+            'category_id' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -81,7 +81,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'デザイン スキル4',
-            'category_id' => '2',
+            'category_id' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -90,7 +90,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => '動画・写真 スキル1',
-            'category_id' => '3',
+            'category_id' => 3,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -99,7 +99,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => '動画・写真 スキル2',
-            'category_id' => '3',
+            'category_id' => 3,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -108,7 +108,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => '動画・写真 スキル3',
-            'category_id' => '3',
+            'category_id' => 3,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -117,7 +117,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => '動画・写真 スキル4',
-            'category_id' => '3',
+            'category_id' => 3,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -126,7 +126,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'Webマーケティング スキル1',
-            'category_id' => '4',
+            'category_id' => 4,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -135,7 +135,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'Webマーケティング スキル2',
-            'category_id' => '4',
+            'category_id' => 4,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -144,7 +144,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'Webマーケティング スキル3',
-            'category_id' => '4',
+            'category_id' => 4,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -153,7 +153,7 @@ class SkillsTableSeeder extends Seeder
 
         $param = [
             'name' => 'Webマーケティング スキル4',
-            'category_id' => '4',
+            'category_id' => 4,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];

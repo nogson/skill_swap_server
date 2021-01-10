@@ -29,8 +29,9 @@ class UserController extends Controller
     {
 
         $user = $request->user();
-        $user->strong = empty($user->strong) ? [] : explode(',', $user->strong);
-        $user->weak = empty($user->weak) ? [] : explode(',', $user->weak);
+
+        $user->strong = empty($user->strong) ? [] : array_map('intval',explode(',', $user->strong));
+        $user->weak = empty($user->weak) ? [] : array_map('intval',explode(',', $user->weak));
 
         return response()->success($user);
     }
@@ -62,28 +63,28 @@ class UserController extends Controller
                 }
 
             }
-
-            foreach ($request->strong as $strong) {
-
-                $category = Category::where('name', '=', $strong)->first();
-
-                // カテゴリを追加
-                if (empty($category)) {
-                    $category = Category::create([
-                        'name' => $strong
-                    ]);
-
-                    // カテゴリとユーザーIDをマッピング
-                    $this->saveCategoryMap($user->id, $category->id);
-
-                } else {
-                    // カテゴリとユーザーIDをマッピング
-                    $this->saveCategoryMap($user->id, $category->id);
-                }
-            }
-
-            // カテゴリマップを削除
-            $this->deleteCategoryMap($user, $request->strong);
+//
+//            foreach ($request->strong as $strong) {
+//
+//                $category = Category::where('name', '=', $strong)->first();
+//
+//                // カテゴリを追加
+//                if (empty($category)) {
+//                    $category = Category::create([
+//                        'name' => $strong
+//                    ]);
+//
+//                    // カテゴリとユーザーIDをマッピング
+//                    $this->saveCategoryMap($user->id, $category->id);
+//
+//                } else {
+//                    // カテゴリとユーザーIDをマッピング
+//                    $this->saveCategoryMap($user->id, $category->id);
+//                }
+//            }
+//
+//            // カテゴリマップを削除
+//            $this->deleteCategoryMap($user, $request->strong);
 
             $user->name = $request->name;
             $user->profile = $request->profile;
