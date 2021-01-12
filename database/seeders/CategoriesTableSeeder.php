@@ -22,7 +22,7 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('categories')->insert($param);
+        DB::table('category')->insert($param);
 
         $param = [
             'name' => 'デザイン',
@@ -30,7 +30,7 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('categories')->insert($param);
+        DB::table('category')->insert($param);
 
         $param = [
             'name' => '動画・写真',
@@ -38,7 +38,7 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('categories')->insert($param);
+        DB::table('category')->insert($param);
 
         $param = [
             'name' => 'Webマーケティング',
@@ -46,6 +46,6 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('categories')->insert($param);
+        DB::table('category')->insert($param);
     }
 }

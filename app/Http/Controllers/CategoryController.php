@@ -14,11 +14,4 @@ class CategoryController extends Controller
         return response()->success(Category::all());
     }
 
-    public function users(Request $request)
-    {
-        $user_ids = CategoryMap::where('category_id',$request->id)->pluck('user_id');
-        $users = User::whereIn('id',$user_ids)->get();
-        return response()->success($users);
-    }
-
 }

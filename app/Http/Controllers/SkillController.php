@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skill;
+use App\Models\SkillMap;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -14,17 +16,21 @@ class SkillController extends Controller
 
     public function skills(Request $request)
     {
-        return response()->success(Skill::where('category_id',$request->id)->get());
+        return response()->success(Skill::where('category_id', $request->id)->get());
     }
 
     public function users(Request $request)
     {
-        $users = [];
-        $skills = Skill::where('category_id',$request->id)->get();
+        $skills = Skill::where('category_id', $request->id)->get();
 
+        foreach ($skills as $value) {
+            $users = [];
+            foreach (SkillMap::where('skill_id', $value->id)->get() as $map) {
+                $users[] = User::find($map->user_id);
+            }
+            $value->users = $users;
+        }
 
-        foreach ($skills as )
-
-        return response()->success(Skill::where('category_id',$request->id)->get());
+        return response()->success($skills);
     }
 }
