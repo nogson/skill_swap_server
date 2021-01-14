@@ -16,6 +16,9 @@ class SkillsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('skills')->truncate();
+
         $param = [
             'name' => 'IT・プログラミング スキル1',
             'category_id' => 1,

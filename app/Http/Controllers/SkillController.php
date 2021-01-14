@@ -19,7 +19,7 @@ class SkillController extends Controller
         return response()->success(Skill::where('category_id', $request->id)->get());
     }
 
-    public function users(Request $request)
+    public function categoryUsers(Request $request)
     {
         $skills = Skill::where('category_id', $request->id)->get();
 
@@ -33,4 +33,20 @@ class SkillController extends Controller
 
         return response()->success($skills);
     }
+
+    public function skillUsers(Request $request)
+    {
+        $users = [];
+        $skill_maps =SkillMap::where('skill_id', $request->id)->get();
+
+        foreach ($skill_maps as $value) {
+            $user = User::find($value->user_id);
+            $user->strong = Skill::find(explode(',',$user->strong));
+            $user->weak = Skill::find(explode(',',$user->weak));;
+            $users[] = $user;
+        }
+
+        return response()->success($users);
+    }
+
 }

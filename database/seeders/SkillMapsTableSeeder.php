@@ -15,6 +15,8 @@ class SkillMapsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('skill_maps')->truncate();
+
         $param = [
             'user_id' => '1',
             'skill_id' => '1',

@@ -16,8 +16,11 @@ class UsersTabaleSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('users')->truncate();
+
         $param = [
-            'name' => 'taro',
+            'name' => '太郎',
             'email' => 'taro@example.com',
             'password' => Hash::make('test'),
             'profile' => '私はプログラミング勉強中です。だれかバックエンドを教えて下さい。今はLaravelを勉強しています。AWSも勉強していますが難しいです。',
@@ -28,6 +31,7 @@ class UsersTabaleSeeder extends Seeder
             'weak_description' => 'バックエンドが苦手です',
             'link' => 'https://yahoo.co.jp',
             'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_1.png',
+            'star' => 4,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -46,6 +50,7 @@ class UsersTabaleSeeder extends Seeder
             'weak_description' => 'バックエンドが苦手です',
             'link' => 'https://yahoo.co.jp',
             'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_2.png',
+            'star' => 5,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -53,7 +58,7 @@ class UsersTabaleSeeder extends Seeder
         DB::table('users')->insert($param);
 
         $param = [
-            'name' => 'watanabetetsuya',
+            'name' => 'わたったなべ',
             'email' => 'watanabetetsuya@example.com',
             'password' => Hash::make('test'),
             'profile' => '作家 経済評論家 渡邉哲也です。本業は企業経営です。 メルマガは http://foomii.com/00049 執筆、出演、講演の依頼は info@watanabetetsuya.info で受け付けております。お気軽に',
@@ -64,6 +69,7 @@ class UsersTabaleSeeder extends Seeder
             'weak_description' => 'バックエンドが苦手です',
             'link' => 'https://yahoo.co.jp',
             'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_3.png',
+            'star' => 3,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -71,7 +77,7 @@ class UsersTabaleSeeder extends Seeder
         DB::table('users')->insert($param);
 
         $param = [
-            'name' => 'absfff',
+            'name' => 'ごりらっぱ',
             'email' => 'absfffa@example.com',
             'password' => Hash::make('test'),
             'profile' => 'インフラエンジニア/SRE http://enigmo.co.jp @stylehaus_jp@BUYMA AWS/Ruby/サウナ/ロードバイク/Bianchi/スケボー/アニメ/漫画/映画/猫/犬/登山/銭湯/温泉/T.M.Revolution/GLAY/LArc/LUNA SEA/hide/X/境川CR/湘南/江の島',
@@ -82,6 +88,7 @@ class UsersTabaleSeeder extends Seeder
             'weak_description' => '',
             'link' => 'https://yahoo.co.jp',
             'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_3.png',
+            'star' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -101,6 +108,7 @@ class UsersTabaleSeeder extends Seeder
             'weak_description' => '',
             'link' => 'https://yahoo.co.jp',
             'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_4.png',
+            'star' => 5,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
@@ -119,6 +127,44 @@ class UsersTabaleSeeder extends Seeder
             'weak_description' => 'iOSも頑張りたいです',
             'link' => 'https://yahoo.co.jp',
             'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_5.png',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ];
+
+        DB::table('users')->insert($param);
+
+        $param = [
+            'name' => 'ほげほげ太郎',
+            'email' => 'hogeggg@example.com',
+            'password' => Hash::make('test'),
+            'profile' => 'お酒が大好きなプログラマーです。Androidアプリ作ったり、お酒飲んだりしてます。ハゲのサラブレッド。',
+            'address' => '東京都',
+            'strong' => '1,2,13,14,15',
+            'strong_description' => 'Androidエンジニアです',
+            'weak' => '5,6,7',
+            'weak_description' => 'iOSも頑張りたいです',
+            'link' => 'https://yahoo.co.jp',
+            'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_2.png',
+            'star' => 3,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ];
+
+        DB::table('users')->insert($param);
+
+        $param = [
+            'name' => 'くそ太郎',
+            'email' => 'kuso@example.com',
+            'password' => Hash::make('test'),
+            'profile' => 'ほほほほほほおほおおほほほほほほおほおおほほほほほほおほおおほほほほほほおほおおほほほほほほおほおお',
+            'address' => '東京都',
+            'strong' => '1,2,13,14,15',
+            'strong_description' => 'ほほほほほほおほおお',
+            'weak' => '5,6,7',
+            'weak_description' => 'ほほほほほほおほおお',
+            'link' => 'https://yahoo.co.jp',
+            'thumbnail' => 'https://skill-swap.s3-ap-northeast-1.amazonaws.com/thumbnail/user_1.png',
+            'star' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];

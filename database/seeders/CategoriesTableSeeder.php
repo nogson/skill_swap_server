@@ -16,13 +16,16 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('categories')->truncate();
+
         $param = [
             'name' => 'IT・プログラミング',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('category')->insert($param);
+        DB::table('categories')->insert($param);
 
         $param = [
             'name' => 'デザイン',
@@ -30,7 +33,7 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('category')->insert($param);
+        DB::table('categories')->insert($param);
 
         $param = [
             'name' => '動画・写真',
@@ -38,7 +41,7 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('category')->insert($param);
+        DB::table('categories')->insert($param);
 
         $param = [
             'name' => 'Webマーケティング',
@@ -46,6 +49,6 @@ class CategoriesTableSeeder extends Seeder
             'updated_at' => new DateTime(),
         ];
 
-        DB::table('category')->insert($param);
+        DB::table('categories')->insert($param);
     }
 }
