@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\CategoryMap;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,10 +28,19 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-        $user = $request->id ? User::find($request->id) : $request->user();
+        $user = User::find($request->id);
 
-        $user->strong = empty($user->strong) ? [] : array_map('intval', explode(',', $user->strong));
-        $user->weak = empty($user->weak) ? [] : array_map('intval', explode(',', $user->weak));
+        $user->strong = empty($user->strong) ? [] : Skill::find( array_map('intval', explode(',', $user->strong)));
+        $user->weak = empty($user->weak) ? [] : Skill::find( array_map('intval', explode(',', $user->weak)));
+
+        return response()->success($user);
+    }
+
+    public function showMe(Request $request)
+    {
+        $user = $request->user();
+        $user->strong = empty($user->strong) ? [] : Skill::find( array_map('intval', explode(',', $user->strong)));
+        $user->weak = empty($user->weak) ? [] : Skill::find( array_map('intval', explode(',', $user->weak)));
 
         return response()->success($user);
     }

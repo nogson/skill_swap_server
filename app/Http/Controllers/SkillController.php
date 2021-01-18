@@ -6,6 +6,7 @@ use App\Models\Skill;
 use App\Models\SkillMap;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
 {
@@ -44,6 +45,20 @@ class SkillController extends Controller
             $user->strong = Skill::find(explode(',',$user->strong));
             $user->weak = Skill::find(explode(',',$user->weak));;
             $users[] = $user;
+        }
+
+        return response()->success($users);
+    }
+
+    public function skillsUsers(Request $request)
+    {
+
+        $user_ids =SkillMap::whereIn('skill_id', $request->ids)->pluck('user_id');
+        $users = User::find($user_ids->unique());
+
+        foreach ($users as $user) {
+            $user->strong = Skill::find(explode(',',$user->strong));
+            $user->weak = Skill::find(explode(',',$user->weak));
         }
 
         return response()->success($users);
