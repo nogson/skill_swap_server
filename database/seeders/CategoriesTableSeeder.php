@@ -17,8 +17,6 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('categories')->truncate();
-
         $param = [
             'name' => 'IT・プログラミング',
             'created_at' => new DateTime(),

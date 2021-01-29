@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteCategoryMapsTable extends Migration
+class CreateMessageMapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class DeleteCategoryMapsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('message_maps', function (Blueprint $table) {
+            $table->id();
+            $table->string('sender_id');
+            $table->string('receiver_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class DeleteCategoryMapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_maps');
+        Schema::dropIfExists('message_maps');
     }
 }

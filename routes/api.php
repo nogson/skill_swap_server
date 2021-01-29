@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/loginUser', 'App\Http\Controllers\UserController@showMe');
     Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
     Route::post('/user/imageUpload', 'App\Http\Controllers\UserController@imageUpload');
+    Route::post('/message', 'App\Http\Controllers\MessageController@store');
+
 });
 
 
