@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
     Route::post('/user/imageUpload', 'App\Http\Controllers\UserController@imageUpload');
     Route::post('/message', 'App\Http\Controllers\MessageController@store');
-
+    Route::get('/getMessageUsers', 'App\Http\Controllers\MessageController@users');
+    Route::get('/getMessages/{id}', 'App\Http\Controllers\MessageController@index');
 });
 
 
