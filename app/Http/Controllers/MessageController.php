@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\MessageMap;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -24,12 +25,22 @@ class MessageController extends Controller
 
         $messages = Message::find($query->pluck('id'));
 
-        foreach ($messages as $message){
-            $message->sender_user = User::find($message->sender_id);
-            $message->receiver_user = User::find($message->receiver_id);
+        foreach ($messages as $message) {
+            $message->is_self = $message->sender_id == $requestUserId;
         }
 
-        return response()->success($messages);
+        $messageGroup = $messages->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('Y/m/d');
+        });
+
+        $res = [];
+
+        foreach ($messageGroup as $key => $value) {
+            array_push($res, ['messages' => $value, 'date' => $key]);
+        }
+
+
+        return response()->success($res);
     }
 
     public function users(Request $request)

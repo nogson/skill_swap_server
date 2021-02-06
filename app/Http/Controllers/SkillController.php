@@ -38,12 +38,12 @@ class SkillController extends Controller
     public function skillUsers(Request $request)
     {
         $users = [];
-        $skill_maps =SkillMap::where('skill_id', $request->id)->get();
+        $skill_maps = SkillMap::where('skill_id', $request->id)->get();
 
         foreach ($skill_maps as $value) {
             $user = User::find($value->user_id);
-            $user->strong = Skill::find(explode(',',$user->strong));
-            $user->weak = Skill::find(explode(',',$user->weak));;
+            $user->strong = Skill::find(explode(',', $user->strong));
+            $user->weak = Skill::find(explode(',', $user->weak));;
             $users[] = $user;
         }
 
@@ -53,15 +53,52 @@ class SkillController extends Controller
     public function skillsUsers(Request $request)
     {
 
-        $user_ids =SkillMap::whereIn('skill_id', $request->ids)->pluck('user_id');
+        $user_ids = SkillMap::whereIn('skill_id', $request->ids)->pluck('user_id');
         $users = User::find($user_ids->unique());
 
         foreach ($users as $user) {
-            $user->strong = Skill::find(explode(',',$user->strong));
-            $user->weak = Skill::find(explode(',',$user->weak));
+            $user->strong = Skill::find(explode(',', $user->strong));
+            $user->weak = Skill::find(explode(',', $user->weak));
         }
 
         return response()->success($users);
+    }
+
+    public function popularSkills(Request $request)
+    {
+        $weakIds = User::where('weak', '!=', null)->pluck('weak')->all();
+
+        $weak = [];
+
+        foreach ($weakIds as $weakId){
+            foreach (explode(',', $weakId) as $v){
+                array_push($weak,$v);
+            }
+        }
+
+        $weak = array_count_values($weak);
+        $weak = array_slice($weak,0,3,true);
+
+        $skills = Skill::find(array_keys($weak));
+
+        foreach ($skills as $skill){
+            $skill->users = $this->getUsersBySkill([$skill->id]);
+        }
+
+        return response()->success($skills);
+    }
+
+    private function getUsersBySkill($ids) {
+        $user_ids = SkillMap::whereIn('skill_id', $ids)->pluck('user_id');
+
+        $users = User::find($user_ids->unique());
+
+        foreach ($users as $user) {
+            $user->strong = Skill::find(explode(',', $user->strong));
+            $user->weak = Skill::find(explode(',', $user->weak));
+        }
+
+        return $users;
     }
 
 }

@@ -36,6 +36,7 @@ Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
 Route::get('/category', 'App\Http\Controllers\CategoryController@index');
 Route::get('/category/{id}/user', 'App\Http\Controllers\CategoryController@users');
 Route::get('/skills', 'App\Http\Controllers\SkillController@index');
+Route::get('/popularSkills', 'App\Http\Controllers\SkillController@popularSkills');
 Route::get('/category/{id}/skills', 'App\Http\Controllers\SkillController@skills');
 Route::get('/category/{id}/users', 'App\Http\Controllers\SkillController@categoryUsers');
 Route::get('/skill/{id}/users', 'App\Http\Controllers\SkillController@skillUsers');
