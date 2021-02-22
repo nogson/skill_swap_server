@@ -17,6 +17,7 @@ class CreateMessageMapsTable extends Migration
             $table->id();
             $table->string('sender_id');
             $table->string('receiver_id');
+            $table->boolean('unread')->default(true);
             $table->timestamps();
         });
     }
