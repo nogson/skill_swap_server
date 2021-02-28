@@ -39,5 +39,27 @@ class MessagesTableSeeder extends Seeder
         ];
 
         DB::table('messages')->insert($param);
+
+        $param = [
+            'message_map_id' => 3,
+            'sender_id' => 3,
+            'receiver_id' => 1,
+            'message' => 'こんにちは。はじめまして。',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ];
+
+        DB::table('messages')->insert($param);
+
+        $param = [
+            'message_map_id' => 4,
+            'sender_id' => 3,
+            'receiver_id' => 1,
+            'message' => 'よろしくおねがいします',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ];
+
+        DB::table('messages')->insert($param);
     }
 }

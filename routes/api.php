@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/message', 'App\Http\Controllers\MessageController@store');
     Route::get('/getMessageUsers', 'App\Http\Controllers\MessageController@users');
     Route::get('/getMessages/{id}', 'App\Http\Controllers\MessageController@index');
+    Route::get('/unread', 'App\Http\Controllers\MessageController@unread');
+    Route::put('/updateReadStatus', 'App\Http\Controllers\MessageController@updateReadStatus');
+
 });
 
 

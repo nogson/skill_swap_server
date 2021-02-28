@@ -93,4 +93,28 @@ class MessageController extends Controller
         });
 
     }
+
+    public function unread(Request $request)
+    {
+        $query = MessageMap::query();
+        $query->where('receiver_id', $request->user()->id);
+        $query->where('unread', true);
+
+        return response()->success(['unread' => $query->get()->isNotEmpty()]);
+    }
+
+    public function updateReadStatus(Request $request)
+    {
+        $query = MessageMap::query();
+        $query->where('receiver_id', $request->user()->id);
+        $query->where('unread', true);
+        $messageMaps = $query->get();
+
+        foreach ($messageMaps as $messageMap) {
+            $messageMap->unread = false;
+            $messageMap->save();
+        }
+
+        return response()->success();
+    }
 }
