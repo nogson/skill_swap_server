@@ -59,7 +59,15 @@ class MessageController extends Controller
             return $requestUserId != $id;
         });
 
-        return response()->success(User::find(array_values($ids)));
+        $users = User::find(array_values($ids));
+        $users = $users->map(function ($user) {
+            $query = MessageMap::query();
+            $unread = $query->where('sender_id', $user->id)->where('unread', true)->get()->isNotEmpty();
+            return ['data' => $user,'unread' => $unread];
+
+        });
+
+        return response()->success($users);
     }
 
     public function store(Request $request)
@@ -107,6 +115,7 @@ class MessageController extends Controller
     {
         $query = MessageMap::query();
         $query->where('receiver_id', $request->user()->id);
+        $query->where('sender_id', $request->id);
         $query->where('unread', true);
         $messageMaps = $query->get();
 
